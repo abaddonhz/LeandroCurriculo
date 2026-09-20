@@ -1,4 +1,4 @@
-const bootLines=['[ OK ] kernel initialized','[ OK ] loading developer modules','[ OK ] mounting project database','[ OK ] establishing secure interface','[ OK ] identity verified','ACCESS GRANTED.'];
+const bootLines=['[ OK ] kernel inicializado','[ OK ] carregando modelos de desenvolvimento','[ OK ] montando projetos na database','[ OK ] estabilizando segurança do curriculo','[ OK ] identidade verificada','ACCESS GRANTED.'];
 const bootText=document.querySelector('#bootText'),enter=document.querySelector('#enter');let bi=0;
 function boot(){if(bi<bootLines.length){bootText.textContent+=bootLines[bi++]+'\n';setTimeout(boot,220)}else enter.classList.remove('hidden')}boot();
 enter.onclick=()=>{document.querySelector('#boot').remove();document.querySelector('#app').classList.remove('hidden');typeText()};
