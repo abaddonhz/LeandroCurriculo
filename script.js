@@ -46,7 +46,7 @@ function boot() {
             Maior = mais lento
         */
 
-        setTimeout(boot, 1220);
+        setTimeout(boot, 620);
 
     } else {
 
