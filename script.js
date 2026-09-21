@@ -108,12 +108,8 @@ function boot() {
         bootText.insertAdjacentElement('afterend', granted);
 
 
-        /* Toca o som */
-        const accessSound = new Audio('sounds/access.mp3');
-
-        accessSound.volume = 0.25;
-
-        accessSound.play().catch(() => {});
+        /* Toca um "plin" eletrônico curto */
+        playAccessSound();
 
 
         /* Mostra ENTER SYSTEM depois */
@@ -122,6 +118,71 @@ function boot() {
             enter.classList.remove('hidden');
 
         }, 700);
+    }
+}
+
+
+/* =========================================================
+   SOM DO ACCESS GRANTED
+   ========================================================= */
+
+/*
+    Gera um "plin" eletrônico curto sem precisar de MP3.
+*/
+
+function playAccessSound() {
+
+    try {
+
+        const AudioContext =
+            window.AudioContext || window.webkitAudioContext;
+
+        if (!AudioContext) return;
+
+        const audioContext = new AudioContext();
+
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        oscillator.type = 'sine';
+
+        oscillator.frequency.setValueAtTime(
+            880,
+            audioContext.currentTime
+        );
+
+        oscillator.frequency.exponentialRampToValueAtTime(
+            1320,
+            audioContext.currentTime + 0.12
+        );
+
+        gain.gain.setValueAtTime(
+            0.0001,
+            audioContext.currentTime
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.10,
+            audioContext.currentTime + 0.015
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            0.0001,
+            audioContext.currentTime + 0.28
+        );
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.30);
+
+        oscillator.addEventListener('ended', () => {
+            audioContext.close();
+        });
+
+    } catch (error) {
+        /* Se o navegador bloquear o áudio, o site continua normal. */
     }
 }
 
