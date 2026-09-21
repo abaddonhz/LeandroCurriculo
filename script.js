@@ -7,7 +7,7 @@
     simulando alguém iniciando o sistema pelo terminal.
 */
 
-const bootCommand = 'root@leandro:~$ ./start_portfolio';
+const bootCommand = 'Iniciando Currículo para Nautta';
 
 
 /*
