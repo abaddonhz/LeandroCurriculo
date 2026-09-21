@@ -89,25 +89,6 @@ function typeBootCommand() {
    MENSAGENS DO BOOT
    ========================================================= */
 
-function boot() {
-
-    if (bi < bootLines.length) {
-
-        bootText.textContent += bootLines[bi++] + '\n';
-
-        setTimeout(boot, 620);
-
-    } else {
-
-        /* Cria o ACCESS GRANTED separado */
-        const granted = document.createElement('div');
-
-        granted.className = 'access-granted';
-        granted.textContent = 'ACCESS GRANTED.';
-
-        bootText.insertAdjacentElement('afterend', granted);
-
-
         /* Toca um "plin" eletrônico curto */
         playAccessSound();
 
