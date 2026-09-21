@@ -2,62 +2,87 @@
    BOOT / INICIALIZAÇÃO DO SISTEMA
    ========================================================= */
 
-/*
-    Essas são as mensagens que aparecem quando
-    a pessoa abre o site.
-
-    Você pode mudar os textos livremente.
-*/
-
 const bootLines = [
     '[ OK ] kernel inicializado',
     '[ OK ] carregando modelos de desenvolvimento',
     '[ OK ] montando projetos na database',
     '[ OK ] estabilizando segurança do curriculo',
     '[ OK ] identidade verificada',
+    '',
     'ACCESS GRANTED.'
 ];
-
-
-/* Elementos da tela de boot */
 
 const bootText = document.querySelector('#bootText');
 const enter = document.querySelector('#enter');
 
+const bootCommand = 'root@leandro:~$ ./start_portfolio';
+
+let commandIndex = 0;
 let bi = 0;
 
 
-/*
-    Mostra cada linha do boot uma por uma.
-*/
+/* =========================================================
+   DIGITA O COMANDO INICIAL
+   ========================================================= */
+
+function typeBootCommand() {
+
+    if (commandIndex < bootCommand.length) {
+
+        bootText.textContent =
+            bootCommand.slice(0, commandIndex + 1) + '█';
+
+        commandIndex++;
+
+        setTimeout(typeBootCommand, 45);
+
+    } else {
+
+        /* Remove o cursor e pula duas linhas */
+
+        bootText.textContent =
+            bootCommand + '\n\n';
+
+        /* Pequena pausa antes do sistema responder */
+
+        setTimeout(boot, 500);
+    }
+}
+
+
+/* =========================================================
+   RESPOSTA DO SISTEMA
+   ========================================================= */
 
 function boot() {
 
     if (bi < bootLines.length) {
 
-        bootText.textContent += bootLines[bi++] + '\n';
+        bootText.textContent +=
+            bootLines[bi++] + '\n';
 
-        /*
-            VELOCIDADE DO BOOT
+        /* Tempo entre cada mensagem */
 
-            220 = 0,22 segundos entre cada linha.
-
-            Menor = mais rápido
-            Maior = mais lento
-        */
-
-        setTimeout(boot, 620);
+        setTimeout(boot, 420);
 
     } else {
 
-        /*
-            Quando termina, mostra:
-            [ ENTER SYSTEM ]
-        */
+        /* Pequena pausa antes de liberar acesso */
 
-        enter.classList.remove('hidden');
+        setTimeout(() => {
+
+            enter.classList.remove('hidden');
+
+        }, 450);
     }
 }
+
+
+/* =========================================================
+   INICIA O BOOT
+   ========================================================= */
+
+typeBootCommand();
 
 
 /* Inicia o boot */
