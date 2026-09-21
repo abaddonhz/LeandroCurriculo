@@ -19,9 +19,7 @@ const bootLines = [
     '[ OK ] carregando modelos de desenvolvimento',
     '[ OK ] montando projetos na database',
     '[ OK ] estabilizando segurança do curriculo',
-    '[ OK ] identidade verificada',
-    '',
-    'ACCESS GRANTED.'
+    '[ OK ] identidade verificada'
 ];
 
 
