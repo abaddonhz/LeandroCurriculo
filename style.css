@@ -116,15 +116,45 @@ body {
     place-items: center;
 }
 
+
+/*
+   Centraliza todo o conteúdo do boot.
+*/
+
 .bootbox {
     width: min(760px, 88vw);
 
     color: var(--green);
     font-size: 14px;
     line-height: 1.8;
+
+    text-align: center;
 }
 
+
+/*
+   Centraliza o BLOCO das mensagens,
+   mas mantém cada linha alinhada à esquerda.
+*/
+
+#bootText {
+    display: inline-block;
+
+    text-align: left;
+
+    margin: 0 auto;
+}
+
+
+/*
+   Botão centralizado abaixo das mensagens.
+*/
+
 .boot button {
+    display: block;
+
+    margin: 15px auto 0;
+
     background: transparent;
 
     border: 1px solid var(--green);
