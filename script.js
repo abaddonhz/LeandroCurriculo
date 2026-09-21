@@ -93,34 +93,35 @@ function boot() {
 
     if (bi < bootLines.length) {
 
-        bootText.textContent +=
-            bootLines[bi++] + '\n';
-
-
-        /*
-            VELOCIDADE DAS MENSAGENS
-
-            620 = 0,62 segundo entre cada linha.
-
-            Menor = mais rápido
-            Maior = mais lento
-        */
+        bootText.textContent += bootLines[bi++] + '\n';
 
         setTimeout(boot, 620);
 
     } else {
 
-        /*
-            Depois de terminar o boot,
-            espera um pouco antes de mostrar
-            o botão ENTER SYSTEM.
-        */
+        /* Cria o ACCESS GRANTED separado */
+        const granted = document.createElement('div');
 
+        granted.className = 'access-granted';
+        granted.textContent = 'ACCESS GRANTED.';
+
+        bootText.insertAdjacentElement('afterend', granted);
+
+
+        /* Toca o som */
+        const accessSound = new Audio('sounds/access.mp3');
+
+        accessSound.volume = 0.25;
+
+        accessSound.play().catch(() => {});
+
+
+        /* Mostra ENTER SYSTEM depois */
         setTimeout(() => {
 
             enter.classList.remove('hidden');
 
-        }, 450);
+        }, 700);
     }
 }
 
