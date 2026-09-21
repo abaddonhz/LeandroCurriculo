@@ -2,6 +2,18 @@
    BOOT / INICIALIZAÇÃO DO SISTEMA
    ========================================================= */
 
+/*
+    Comando que será digitado primeiro,
+    simulando alguém iniciando o sistema pelo terminal.
+*/
+
+const bootCommand = 'root@leandro:~$ ./start_portfolio';
+
+
+/*
+    Mensagens exibidas depois que o comando é executado.
+*/
+
 const bootLines = [
     '[ OK ] kernel inicializado',
     '[ OK ] carregando modelos de desenvolvimento',
@@ -12,10 +24,14 @@ const bootLines = [
     'ACCESS GRANTED.'
 ];
 
+
+/* Elementos da tela de boot */
+
 const bootText = document.querySelector('#bootText');
 const enter = document.querySelector('#enter');
 
-const bootCommand = 'root@leandro:~$ ./start_portfolio';
+
+/* Controle das animações */
 
 let commandIndex = 0;
 let bi = 0;
@@ -27,6 +43,11 @@ let bi = 0;
 
 function typeBootCommand() {
 
+    /*
+        Enquanto ainda existirem letras no comando,
+        mostra uma letra por vez.
+    */
+
     if (commandIndex < bootCommand.length) {
 
         bootText.textContent =
@@ -34,16 +55,32 @@ function typeBootCommand() {
 
         commandIndex++;
 
+        /*
+            VELOCIDADE DA DIGITAÇÃO
+
+            45 = velocidade atual.
+
+            Menor = mais rápido
+            Maior = mais lento
+        */
+
         setTimeout(typeBootCommand, 45);
 
     } else {
 
-        /* Remove o cursor e pula duas linhas */
+        /*
+            Quando terminar de digitar,
+            remove o cursor e pula duas linhas.
+        */
 
         bootText.textContent =
             bootCommand + '\n\n';
 
-        /* Pequena pausa antes do sistema responder */
+
+        /*
+            Espera meio segundo antes
+            de começar as respostas.
+        */
 
         setTimeout(boot, 500);
     }
@@ -51,7 +88,7 @@ function typeBootCommand() {
 
 
 /* =========================================================
-   RESPOSTA DO SISTEMA
+   MENSAGENS DO BOOT
    ========================================================= */
 
 function boot() {
@@ -61,13 +98,25 @@ function boot() {
         bootText.textContent +=
             bootLines[bi++] + '\n';
 
-        /* Tempo entre cada mensagem */
 
-        setTimeout(boot, 420);
+        /*
+            VELOCIDADE DAS MENSAGENS
+
+            620 = 0,62 segundo entre cada linha.
+
+            Menor = mais rápido
+            Maior = mais lento
+        */
+
+        setTimeout(boot, 620);
 
     } else {
 
-        /* Pequena pausa antes de liberar acesso */
+        /*
+            Depois de terminar o boot,
+            espera um pouco antes de mostrar
+            o botão ENTER SYSTEM.
+        */
 
         setTimeout(() => {
 
@@ -82,12 +131,14 @@ function boot() {
    INICIA O BOOT
    ========================================================= */
 
+/*
+    Não usamos mais boot() diretamente.
+
+    Primeiro o comando é digitado.
+    Depois ele chama boot() automaticamente.
+*/
+
 typeBootCommand();
-
-
-/* Inicia o boot */
-
-boot();
 
 
 /* =========================================================
